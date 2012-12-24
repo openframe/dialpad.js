@@ -1,0 +1,18 @@
+{
+    "name": "dialpad",
+    "version": "0.0.1",
+    "author": "Henrik Joreteg <henrik@andyet.net>",
+    "description": "Simple, self-contained dialpad UI for phone apps",
+    "dependencies": {
+        "jade": "",
+        "uglify-js": "1.x",
+        "underscore": "",
+        "colors": ""
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/att-innovate/dialpad.git"
+    },
+    "keywords": ["telephony", "browser", "ui"],
+    "main": "dialpad.js"
+}
