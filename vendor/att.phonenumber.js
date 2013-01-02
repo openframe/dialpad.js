@@ -1,4 +1,4 @@
-/*global io MediaServices*/
+/*global io MediaServices Phono*/
 (function () {
     // Utils and references
     var root = this,
@@ -33,6 +33,20 @@
                     func(key, obj[key]);
                 }
             }
+        },
+        getQueryParam: function (name) {
+            // query string parser
+            var cleaned = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]"),
+                regexS = "[\\?&]" + cleaned + "=([^&#]*)",
+                regex = new RegExp(regexS),
+                results = regex.exec(window.location.search);
+            return (results) ? decodeURIComponent(results[1].replace(/\+/g, " ")) : undefined;
+        },
+        // used to try to determine whether they're using the ericsson leif browser
+        // this is not an ideal way to check, but I'm not sure how to do it since
+        // leif if pretty much just stock chromium.
+        h2sSupport: function () {
+            return !!window.webkitPeerConnection00 && window.navigator.userAgent.indexOf('Chrome/24') !== -1;
         }
     };
 
@@ -116,8 +130,8 @@
         module.exports = att;
     } else {
         // make sure we've got an "att" global
-        root.att || (root.att = {});
-        _.extend(root.att, att);
+        root.ATT || (root.ATT = {});
+        _.extend(root.ATT, att);
     }
 
 }).call(this);

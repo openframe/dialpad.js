@@ -222,16 +222,20 @@
   
   Dialpad.prototype.handleKeyDown = function (e) {
     var number,
-        keyCode = e.which;
+      keyCode = e.which;
     // only handle if Dialpad is showing
     if (keyCode >= 48 && keyCode <= 57) {
-        number = keyCode - 48;
-        this.addNumber(number + '');
+      number = keyCode - 48;
+      this.addNumber(number + '');
     }
 
     if (keyCode === 8) {
-        this.removeLastNumber();
-        e.preventDefault();
+      this.removeLastNumber();
+      e.preventDefault();
+    }
+
+    if (keyCode === 13) {
+      this.handleCallClick(e);
     }
   };
 
