@@ -143,7 +143,7 @@
     return buf.join("");
 }
 
-  var phoney = window.att && window.att.phoneNumber || window.phoney;
+  var phoney = window.ATT && window.ATT.phoneNumber || window.phoney;
 
   var Dialpad = function (spec) {
     var config = spec || {},
