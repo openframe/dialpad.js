@@ -135,7 +135,7 @@
         var __indent = [];
         buf.push('\n<div id="att_dialpad">\n  <div class="dialerwrapper">\n    <div class="numberEntry"></div>\n    <div class="dialpad">\n      <li>\n        <button data-value="1">\n          <p>1</p>\n          <div>&nbsp;</div>\n        </button>\n        <button data-value="2">\n          <p>2</p>\n          <div>abc</div>\n        </button>\n        <button data-value="3">\n          <p>3</p>\n          <div>def</div>\n        </button>\n      </li>\n      <li>\n        <button data-value="4">\n          <p>4</p>\n          <div>ghi</div>\n        </button>\n        <button data-value="5">\n          <p>5</p>\n          <div>jki</div>\n        </button>\n        <button data-value="6">\n          <p>6</p>\n          <div>mno</div>\n        </button>\n      </li>\n      <li>\n        <button data-value="7">\n          <p>7</p>\n          <div>pqrs</div>\n        </button>\n        <button data-value="8">\n          <p>8</p>\n          <div>tuv</div>\n        </button>\n        <button data-value="9">\n          <p>9</p>\n          <div>wxyz</div>\n        </button>\n      </li>\n      <li>\n        <button data-value="#">\n          <p>#</p>\n          <div>&nbsp;</div>\n        </button>\n        <button data-value="0">\n          <p>0</p>\n          <div>&nbsp;</div>\n        </button>\n        <button data-value="del">\n          <p>&#9003;</p>\n          <div></div>\n        </button>\n      </li>\n    </div>\n  </div>');
         if (locals.footer) {
-            buf.push('\n  <footer>\n    <nav class="actions"><a class="call">Call</a></nav>\n  </footer>');
+            buf.push('\n  <footer>\n    <nav><a class="call">Call</a></nav>\n  </footer>');
         }
         buf.push("\n</div>");
     }
