@@ -1,7 +1,7 @@
-#screen
+#att_dialpad
   .dialerwrapper
     .numberEntry
-    ul#dialpad
+    .dialpad
       li
         button(data-value="1")
           p 1
@@ -38,11 +38,11 @@
           div &nbsp;
         button(data-value="0")
           p 0
-          div abc
+          div &nbsp;
         button(data-value="del")
           p &#9003;
           div
   - if (locals.footer)
     footer
-      nav#actions
+      nav.actions
         a.call Call

@@ -1,5 +1,5 @@
 /* global */
-(function () {
+(function (window) {
     /*
   WildEmitter.js is a slim little event emitter largely based on @visionmedia's Emitter from UI Kit.
   
@@ -51,7 +51,6 @@
           handlers = this.callbacks[item];
           for (i = 0, len = handlers.length; i < len; i++) {
               if (handlers[i]._groupName === groupName) {
-                  //console.log('removing');
                   // remove it and shorten the array we're looping through
                   handlers.splice(i, 1);
                   i--;
@@ -134,9 +133,9 @@
     with (locals || {}) {
         var interp;
         var __indent = [];
-        buf.push('\n<div id="screen">\n  <div class="dialerwrapper">\n    <div class="numberEntry"></div>\n    <ul id="dialpad">\n      <li>\n        <button data-value="1">\n          <p>1</p>\n          <div>&nbsp;</div>\n        </button>\n        <button data-value="2">\n          <p>2</p>\n          <div>abc</div>\n        </button>\n        <button data-value="3">\n          <p>3</p>\n          <div>def</div>\n        </button>\n      </li>\n      <li>\n        <button data-value="4">\n          <p>4</p>\n          <div>ghi</div>\n        </button>\n        <button data-value="5">\n          <p>5</p>\n          <div>jki</div>\n        </button>\n        <button data-value="6">\n          <p>6</p>\n          <div>mno</div>\n        </button>\n      </li>\n      <li>\n        <button data-value="7">\n          <p>7</p>\n          <div>pqrs</div>\n        </button>\n        <button data-value="8">\n          <p>8</p>\n          <div>tuv</div>\n        </button>\n        <button data-value="9">\n          <p>9</p>\n          <div>wxyz</div>\n        </button>\n      </li>\n      <li>\n        <button data-value="#">\n          <p>#</p>\n          <div>&nbsp;</div>\n        </button>\n        <button data-value="0">\n          <p>0</p>\n          <div>abc</div>\n        </button>\n        <button data-value="del">\n          <p>&#9003;</p>\n          <div></div>\n        </button>\n      </li>\n    </ul>\n  </div>');
+        buf.push('\n<div id="att_dialpad">\n  <div class="dialerwrapper">\n    <div class="numberEntry"></div>\n    <div class="dialpad">\n      <li>\n        <button data-value="1">\n          <p>1</p>\n          <div>&nbsp;</div>\n        </button>\n        <button data-value="2">\n          <p>2</p>\n          <div>abc</div>\n        </button>\n        <button data-value="3">\n          <p>3</p>\n          <div>def</div>\n        </button>\n      </li>\n      <li>\n        <button data-value="4">\n          <p>4</p>\n          <div>ghi</div>\n        </button>\n        <button data-value="5">\n          <p>5</p>\n          <div>jki</div>\n        </button>\n        <button data-value="6">\n          <p>6</p>\n          <div>mno</div>\n        </button>\n      </li>\n      <li>\n        <button data-value="7">\n          <p>7</p>\n          <div>pqrs</div>\n        </button>\n        <button data-value="8">\n          <p>8</p>\n          <div>tuv</div>\n        </button>\n        <button data-value="9">\n          <p>9</p>\n          <div>wxyz</div>\n        </button>\n      </li>\n      <li>\n        <button data-value="#">\n          <p>#</p>\n          <div>&nbsp;</div>\n        </button>\n        <button data-value="0">\n          <p>0</p>\n          <div>&nbsp;</div>\n        </button>\n        <button data-value="del">\n          <p>&#9003;</p>\n          <div></div>\n        </button>\n      </li>\n    </div>\n  </div>');
         if (locals.footer) {
-            buf.push('\n  <footer>\n    <nav id="actions"><a class="call">Call</a></nav>\n  </footer>');
+            buf.push('\n  <footer>\n    <nav class="actions"><a class="call">Call</a></nav>\n  </footer>');
         }
         buf.push("\n</div>");
     }
@@ -227,6 +226,14 @@
     if (keyCode >= 48 && keyCode <= 57) {
       number = keyCode - 48;
       this.addNumber(number + '');
+    } else if (keyCode >= 65 && keyCode <= 90) {
+      // Transform a-z keycodes into numbers
+      // We divide by 3 since 2-6 have 3 letters
+      // 83 (s) and 86 (v) get a -1, since they are last letters of 7 and 8
+      // Everything after that is handled by making sure 9 is our max
+      number = Math.ceil((keyCode - 64) / 3) + 1;
+      if (keyCode === 83 || keyCode === 86) number--;
+      this.addNumber(Math.min(number, 9) + '');
     }
 
     if (keyCode === 8) {

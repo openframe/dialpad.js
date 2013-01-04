@@ -1,5 +1,5 @@
 /* global */
-(function () {
+(function (window) {
   {{{emitter}}}
 
   var {{{jaderuntime}}}
@@ -90,6 +90,14 @@
     if (keyCode >= 48 && keyCode <= 57) {
       number = keyCode - 48;
       this.addNumber(number + '');
+    } else if (keyCode >= 65 && keyCode <= 90) {
+      // Transform a-z keycodes into numbers
+      // We divide by 3 since 2-6 have 3 letters
+      // 83 (s) and 86 (v) get a -1, since they are last letters of 7 and 8
+      // Everything after that is handled by making sure 9 is our max
+      number = Math.ceil((keyCode - 64) / 3) + 1;
+      if (keyCode === 83 || keyCode === 86) number--;
+      this.addNumber(Math.min(number, 9) + '');
     }
 
     if (keyCode === 8) {
