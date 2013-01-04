@@ -34,7 +34,7 @@ function beautify(code) {
 }
 
 function minify(name) {
-    var code = fs.readFileSync(__dirname + '/' + name + '.js', 'utf-8'),
+    var code = fs.readFileSync(__dirname + '/build/' + name + '.js', 'utf-8'),
         ast = uglify.parser.parse(code),
         pro = uglify.uglify,
         minified;
